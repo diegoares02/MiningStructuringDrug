@@ -8,13 +8,13 @@ This project is a Mining Destructuring Drug API built with .NET and SQL Server, 
 
 ## Project Structure
 
-TaskManagement/
-├── MiningDestructuringDrug.API/           # ASP.NET Core API project
-├── MiningDestructuringDrug.Core/          # Core application logic
-├── MiningDestructuringDrug.Infrastructure/ # Infrastructure layer (data access, services)
-├── MiningDestructuringDrug.Tests/         # Unit tests
-├── docker-compose.yml           # Docker Compose configuration
-└── README.md                    # This file
+MiningDestructuringDrug
+      MiningDestructuringDrug.API/           # ASP.NET Core API project
+      MiningDestructuringDrug.Core/          # Core application logic
+      MiningDestructuringDrug.Infrastructure/ # Infrastructure layer (data access, services)
+      MiningDestructuringDrug.Tests/         # Unit tests
+docker-compose.yml           # Docker Compose configuration
+README.md                    # This file
 
 
 ## Building and Running the API with Docker Compose
