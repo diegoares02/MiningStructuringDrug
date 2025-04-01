@@ -1,0 +1,6 @@
+﻿CREATE TABLE ICD10Codes (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    DrugIndicationId INT NOT NULL,
+    ICD10Code NVARCHAR(20) NOT NULL,
+    FOREIGN KEY (DrugIndicationId) REFERENCES DrugIndications(Id)
+);

@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/mssql-tools:latest AS publish
+
+WORKDIR /app
+
+COPY ./MiningStructuringDrug.DB/bin/Release/MiningStructuringDrug.DB.dacpac ./MiningStructuringDrug.DB.dacpac
+
+#  Entrypoint to deploy the database
+ENTRYPOINT ["/opt/mssql-tools/sqlpackage", \
+            "/Action:Publish", \
+            "/SourceFile:./MiningStructuringDrug.DB.dacpac", \
+            "/TargetServer:sqldata",  \
+            "/TargetDatabase:MiningStructuringDrugDB", \
+            "/TargetUser:sa", \
+            "/TargetPassword:$SA_PASSWORD", \
+            "/p:TrustServerCertificate=true"]

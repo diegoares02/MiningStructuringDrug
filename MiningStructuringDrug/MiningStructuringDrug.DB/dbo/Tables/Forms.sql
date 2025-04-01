@@ -1,0 +1,7 @@
+﻿CREATE TABLE Forms (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    CopayCardId INT NOT NULL,
+    Name NVARCHAR(255),
+    Link NVARCHAR(MAX),
+    FOREIGN KEY (CopayCardId) REFERENCES CopayCards(Id)
+);

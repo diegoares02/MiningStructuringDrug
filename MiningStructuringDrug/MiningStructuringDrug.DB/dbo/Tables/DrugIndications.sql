@@ -1,0 +1,4 @@
+﻿CREATE TABLE DrugIndications (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    DrugName NVARCHAR(255) NOT NULL
+);

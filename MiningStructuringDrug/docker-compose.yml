@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqldata
+    environment:
+      SA_PASSWORD: "P@$$wOrd_5tr0ng!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - appnetwork
+
+  miningstructuringdrug.db: 
+    container_name: miningstructuringdrug.db
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    environment:
+      SA_PASSWORD: "P@$$wOrd_5tr0ng!" 
+    depends_on:
+      - sqldata
+    networks:
+      - appnetwork
+
+  miningstructuringdrug.api:
+    container_name: miningstructuringdrug.api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=sqldata;Database=MiningStructuringDrugDB;User Id=sa;Password=P@$$wOrd_5tr0ng!;TrustServerCertificate=true"
+      Jwt__SecretKey: "Your_Super_Secret_Key"
+      Jwt__Issuer: "your-api.com"
+      Jwt__Audience: "your-client.com"
+    depends_on:
+      - miningstructuringdrug.db 
+    networks:
+      - appnetwork
+
+networks:
+  appnetwork:
+
+volumes:
+  sql_data:
